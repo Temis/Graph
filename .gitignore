@@ -1,6 +1,12 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+/.settings
+/*/.settings
+/*/war/WEB-INF/lib
+/*/war/WEB-INF/classes
+/*/war/WEB-INF/deploy
+/*/war/GraphTesterWar
+/.gradle
+**.classpath
+**.project
+/*/build
+/build
+/*/gwt-unitCache

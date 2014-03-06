@@ -1,0 +1,12 @@
+apply from: '../gwtBuild.gradle'
+
+compileGwt.modules = ['com.temis.arborjs.GraphTesterWar']
+superDevMode.modules = ['com.temis.arborjs.GraphTesterWar']
+
+devMode.modules = ['com.temis.arborjs.GraphTesterWar']
+devMode.startupUrl = 'GraphTesterWar.html'
+
+dependencies {
+	compile project(':GraphGwt')
+	compile project(path: ':GraphGwt')
+}

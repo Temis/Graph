@@ -1,0 +1,7 @@
+apply plugin: 'maven-publish'
+dependencies {
+compile 'com.google.gwt:gwt-user:2.6.0'
+compile 'org.timepedia.exporter:gwtexporter:2.4.0'
+}
+
+

@@ -1,0 +1,83 @@
+defaultTasks 'eclipse', 'build'
+
+
+
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.rholder:gradle-one-jar:1.0.3'
+		classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+	}
+}
+
+
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	
+	sourceCompatibility = 1.7
+	targetCompatibility = 1.7
+	
+	version = '1.0.0'
+	
+	group = 'com.temis.graphGWT'
+	
+	repositories {
+		mavenCentral()
+		flatDir name: 'directoryRepository', dirs: rootProject.file('notInMaven')
+	}
+	
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	
+	compileJava {
+		options.debug = true
+		options.debugOptions.debugLevel = "source,lines,vars"
+	}
+	
+	sourceSets {
+		main { resources { srcDir 'src/main/java'
+			} }
+		test { resources { srcDir 'src/test/java'
+			} }
+	}
+	
+	
+	task sourceJar(type: Jar) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+	
+	jar { dependsOn 'sourceJar' }
+	
+	configurations { source }
+	
+	
+	artifacts { source sourceJar }
+	
+	
+	task listJars << {
+		configurations.runtime.each { File file -> println file.name }
+	}
+	publishing {
+		publications {
+			myPublication(MavenPublication) {
+				// telling gradle to publish project's jar archive (2)
+				from components.java
+				// telling gradle to publish README file (2)
+				artifact ('README.txt') {
+					classifier = 'README'
+					extension  = 'txt'
+				}
+			}
+		}
+		// telling gradle to publish artifact to local directory (3)
+		repositories {
+			maven { url "file:/${project.projectDir}/artifacts" }
+		}
+	}
+	
+}
