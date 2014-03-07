@@ -64,7 +64,7 @@ public abstract class GraphGWT extends SimplePanel {
 	
 	/**
 	 * Remove a node in the graph and all its dependency edges.
-	 * @param name: node reference name
+	 * @param name node reference name
 	 * @return true if node has been removed
 	 */
 	public abstract boolean removeNode(String name);

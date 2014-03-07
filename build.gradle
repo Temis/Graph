@@ -1,7 +1,5 @@
 defaultTasks 'eclipse', 'build'
 
-
-
 buildscript {
 	repositories {
 		mavenCentral()
@@ -13,8 +11,6 @@ buildscript {
 	}
 }
 
-
-
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
@@ -23,7 +19,7 @@ subprojects {
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
 	
-	version = '1.0.0-SNAPSHOT'
+	version = '1.0.0'
 	ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 	
 	group = 'com.temis'
@@ -33,7 +29,6 @@ subprojects {
 		flatDir name: 'directoryRepository', dirs: rootProject.file('notInMaven')
 	}
 	
-	
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 	
 	compileJava {
@@ -42,12 +37,9 @@ subprojects {
 	}
 	
 	sourceSets {
-		main { resources { srcDir 'src/main/java'
-			} }
-		test { resources { srcDir 'src/test/java'
-			} }
+		main { resources { srcDir 'src/main/java' } }
+		test { resources { srcDir 'src/test/java' } }
 	}
-	
 	
 	task sourcesJar(type: Jar) {
 		classifier = 'sources'
@@ -56,27 +48,24 @@ subprojects {
 	
 	jar { dependsOn 'sourcesJar' }
 	
-	configurations { 
-    source
-    deployerJars
+	configurations {
+		source
+		deployerJars
 	}
 	
-		artifacts {
+	artifacts {
 		archives jar
 		archives sourcesJar
 		source sourcesJar
 	}
-
-	
 	
 	task listJars << {
 		configurations.runtime.each { File file -> println file.name }
 	}
-	dependencies {
-		deployerJars 'org.apache.maven.wagon:wagon-ssh:1.0-beta-2'
-	}
+	
+	dependencies { deployerJars 'org.apache.maven.wagon:wagon-ssh:1.0-beta-2' }
+	
 	javadoc {
 		options.addStringOption("sourcepath", "src/main/java")
 	}
-
 }
