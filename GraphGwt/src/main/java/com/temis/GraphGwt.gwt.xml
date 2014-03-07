@@ -5,6 +5,8 @@
   "http://google-web-toolkit.googlecode.com/svn/tags/2.6.0/distro-source/core/src/gwt-module.dtd">
 <module rename-to='GraphGwt'>
 	<inherits name='com.google.gwt.user.User' />
+	<inherits name="com.google.gwt.resources.Resources" />
+	
 	<inherits name='org.timepedia.exporter.Exporter' />
 	<set-property name="export" value="yes" />
 
@@ -12,13 +14,20 @@
 	<inherits name="com.google.gwt.json.JSON" />
 	<public path="public" />
 
+	<!-- ArborJS -->
 	<script src="jquery-1.6.1.min.js" />
 	<script src="jquery.address-1.5.min.js" />
 	<script src="arbor.js" />
 	<script src="arbor-tween.js" />
 	<script src="graphics.js" />
 	<script src="edit.js" />
-	<script src="main.js" />
+	<script src="mainarbor.js" />
+	
+	<!-- Viva graph -->
+	<script src="vivagraph.js" />
+	<script src="mainvivagraph.js" />
+	<stylesheet src='vivagraph.css' />
+	
 	<source path='client' />
 	<source path='shared' />
 

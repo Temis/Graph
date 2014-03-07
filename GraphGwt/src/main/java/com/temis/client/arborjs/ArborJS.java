@@ -1,18 +1,35 @@
-package com.temis.arborjs.client;
+package com.temis.client.arborjs;
 
+import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.user.client.ui.Widget;
+import com.temis.client.common.GraphGWT;
 
 public class ArborJS extends GraphGWT {
 	
 	/* (non-Javadoc)
-	 * @see com.temis.arborjs.client.GraphGWT#draw()
+	 * @see com.temis.client.common.GraphGWT#getImplementationWidget(int, int, java.lang.String)
+	 */
+	@Override
+	public Widget getImplementationWidget(int height, int width, String name) {
+		Canvas canvas = Canvas.createIfSupported();
+		canvas.setWidth(width + "px");
+		canvas.setHeight(height + "px");
+		canvas.setCoordinateSpaceWidth(width);
+		canvas.setCoordinateSpaceHeight(height);
+		canvas.getElement().setId(name);
+		return canvas;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.temis.client.common.GraphGWT#draw()
 	 */
 	@Override
 	public void draw() {
-		redrawGraph(name, jsonDataGraph.getJavaScriptObject(), this);
+		redrawGraph(getName(), getJsonDataGraph().getJavaScriptObject(), this);
 	}
 	
 	private native void redrawGraph(String graphName, JavaScriptObject graphData, GraphGWT arborjs) /*-{
@@ -20,13 +37,13 @@ public class ArborJS extends GraphGWT {
 																									}-*/;
 	
 	/* (non-Javadoc)
-	 * @see com.temis.arborjs.client.GraphGWT#addNode(java.lang.String, java.lang.String, java.lang.String, java.lang.String, double, java.lang.String)
+	 * @see com.temis.client.common.GraphGWT#addNode(java.lang.String, java.lang.String, java.lang.String, java.lang.String, double, java.lang.String)
 	 */
 	@Override
 	public void addNode(String name, String color, String shape, String label, double alpha, String link) {
 		JSONObject nodes;
-		if (jsonDataGraph.containsKey("nodes")) {
-			nodes = (JSONObject) jsonDataGraph.get("nodes");
+		if (getJsonDataGraph().containsKey("nodes")) {
+			nodes = (JSONObject) getJsonDataGraph().get("nodes");
 		}
 		else {
 			nodes = new JSONObject();
@@ -40,17 +57,17 @@ public class ArborJS extends GraphGWT {
 			node.put("link", new JSONString(link));
 		}
 		nodes.put(name, node);
-		jsonDataGraph.put("nodes", nodes);
+		getJsonDataGraph().put("nodes", nodes);
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.temis.arborjs.client.GraphGWT#addEdge(java.lang.String, java.lang.String, double, java.lang.String, java.lang.String, java.lang.Boolean)
+	 * @see com.temis.client.common.GraphGWT#addEdge(java.lang.String, java.lang.String, double, java.lang.String, java.lang.String, java.lang.Boolean)
 	 */
 	@Override
 	public void addEdge(String sourceNodeName, String targetNodeName, double weight, String name, String color, Boolean directed) {
 		JSONObject edges;
-		if (jsonDataGraph.containsKey("edges")) {
-			edges = (JSONObject) jsonDataGraph.get("edges");
+		if (getJsonDataGraph().containsKey("edges")) {
+			edges = (JSONObject) getJsonDataGraph().get("edges");
 		}
 		else {
 			edges = new JSONObject();
@@ -79,16 +96,16 @@ public class ArborJS extends GraphGWT {
 		edge.put(targetNodeName, edgeData);
 		
 		edges.put(sourceNodeName, edge);
-		jsonDataGraph.put("edges", edges);
+		getJsonDataGraph().put("edges", edges);
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.temis.arborjs.client.GraphGWT#removeNode(java.lang.String)
+	 * @see com.temis.client.common.GraphGWT#removeNode(java.lang.String)
 	 */
 	@Override
 	public boolean removeNode(String name) {
-		if (jsonDataGraph.containsKey("nodes")) {
-			JSONObject nodes = (JSONObject) jsonDataGraph.get("nodes");
+		if (getJsonDataGraph().containsKey("nodes")) {
+			JSONObject nodes = (JSONObject) getJsonDataGraph().get("nodes");
 			if (nodes.containsKey(name)) {
 				JSONObject node = (JSONObject) nodes.get(name);
 				node.put("alpha", new JSONNumber(0));

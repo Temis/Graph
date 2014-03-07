@@ -1,8 +1,8 @@
-package com.temis.arborjs.client;
+package com.temis.client.common;
 
-import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Object GraphGWT wrapping a javascript Graph (basically an arborjs graph).
@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
  *
  */
 public abstract class GraphGWT extends SimplePanel {
-	Canvas canvas;
 	String name;
 	int height = 500;
 	int width = 600;
@@ -48,14 +47,17 @@ public abstract class GraphGWT extends SimplePanel {
 		this.name = name;
 		this.height = height;
 		this.width = width;
-		canvas = Canvas.createIfSupported();
-		canvas.setWidth(width + "px");
-		canvas.setHeight(height + "px");
-		canvas.setCoordinateSpaceWidth(width);
-		canvas.setCoordinateSpaceHeight(height);
-		canvas.getElement().setId(name);
-		setWidget(canvas);
+		setWidget(getImplementationWidget(height, width, name));
 	}
+	
+	/**
+	 * Generate the widget linked to the Graph.
+	 * @param height
+	 * @param width
+	 * @param name
+	 * @return
+	 */
+	public abstract Widget getImplementationWidget(int height, int width, String name);
 	
 	/**
 	 * Draw the graph.
@@ -245,5 +247,33 @@ public abstract class GraphGWT extends SimplePanel {
 	 */
 	public void setCurrentHoverNodeName(String currentHoverNodeName) {
 		this.currentHoverNodeName = currentHoverNodeName;
+	}
+	
+	public NodeHandler getNodeHandler() {
+		return nodeHandler;
+	}
+	
+	public NodeClickHandler getNodeClickHandler() {
+		return nodeClickHandler;
+	}
+	
+	public NodeRightClickHandler getNodeRightClickHandler() {
+		return nodeRightClickHandler;
+	}
+	
+	public NodeMiddleClickHandler getNodeMiddleClickHandler() {
+		return nodeMiddleClickHandler;
+	}
+	
+	public NodeMouseHoverHandler getNodeMouseHoverHandler() {
+		return nodeMouseHoverHandler;
+	}
+	
+	public NodeMouseOutHandler getNodeMouseOutHandler() {
+		return nodeMouseOutHandler;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

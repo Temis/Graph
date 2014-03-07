@@ -1,4 +1,4 @@
-package com.temis.arborjs.client;
+package com.temis.client.common;
 
 import com.google.gwt.json.client.JSONObject;
 

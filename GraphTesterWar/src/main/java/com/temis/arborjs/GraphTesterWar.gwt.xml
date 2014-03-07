@@ -5,7 +5,7 @@
   "http://google-web-toolkit.googlecode.com/svn/tags/2.6.0/distro-source/core/src/gwt-module.dtd">
 <module rename-to='GraphTesterWar'>
 	<entry-point class='com.temis.arborjs.client.GraphTesterWar' />
-	<inherits name='com.temis.arborjs.GraphGwt' />
+	<inherits name='com.temis.GraphGwt' />
 	<source path='client' />
 	<source path='shared' />
 </module>
