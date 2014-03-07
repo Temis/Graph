@@ -18,18 +18,21 @@ buildscript {
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
+	apply plugin: 'maven'
 	
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
 	
-	version = '1.0.0'
+	version = '1.0.0-SNAPSHOT'
+	ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 	
-	group = 'com.temis.graphGWT'
+	group = 'com.temis'
 	
 	repositories {
 		mavenCentral()
 		flatDir name: 'directoryRepository', dirs: rootProject.file('notInMaven')
 	}
+	
 	
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 	
@@ -46,21 +49,34 @@ subprojects {
 	}
 	
 	
-	task sourceJar(type: Jar) {
+	task sourcesJar(type: Jar) {
 		classifier = 'sources'
 		from sourceSets.main.allSource
 	}
 	
-	jar { dependsOn 'sourceJar' }
+	jar { dependsOn 'sourcesJar' }
 	
-	configurations { source }
+	configurations { 
+    source
+    deployerJars
+	}
 	
-	
-	artifacts { source sourceJar }
+		artifacts {
+		archives jar
+		archives sourcesJar
+		source sourcesJar
+	}
+
 	
 	
 	task listJars << {
 		configurations.runtime.each { File file -> println file.name }
 	}
-	
+	dependencies {
+		deployerJars 'org.apache.maven.wagon:wagon-ssh:1.0-beta-2'
+	}
+	javadoc {
+		options.addStringOption("sourcepath", "src/main/java")
+	}
+
 }

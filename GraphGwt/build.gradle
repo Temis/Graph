@@ -1,6 +1,24 @@
+apply from: '../maven.gradle'
+
 dependencies {
-compile 'com.google.gwt:gwt-user:2.6.0'
-compile 'org.timepedia.exporter:gwtexporter:2.4.0'
+	compile 'com.google.gwt:gwt-user:2.6.0'
+	compile 'org.timepedia.exporter:gwtexporter:2.4.0'
 }
 
-
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			configuration = configurations.deployerJars
+			pom.groupId = 'com.temis'
+			pom.project {
+				licenses {
+					license {
+						name 'The Apache Software License, Version 2.0'
+						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+						distribution 'repo'
+					}
+				}
+			}
+		}
+	}
+}
