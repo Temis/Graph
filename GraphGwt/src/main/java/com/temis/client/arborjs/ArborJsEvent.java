@@ -102,17 +102,6 @@ public class ArborJsEvent extends GraphEvent {
 		
 	}
 	
-	private JSONObject getCurrentNodeJsonData(String nodeName, GraphGWT o) {
-		JSONObject currentNodeData = new JSONObject();
-		if (o.getJsonDataGraph().containsKey("nodes")) {
-			JSONObject nodes = (JSONObject) o.getJsonDataGraph().get("nodes");
-			if (nodes.containsKey(nodeName)) {
-				currentNodeData = (JSONObject) nodes.get(nodeName);
-			}
-		}
-		return currentNodeData;
-	}
-	
 	@Override
 	public void mouseOutNode(String nodeName, GraphGWT o) {
 		if (o.getNodeMouseOutHandler() != null) {

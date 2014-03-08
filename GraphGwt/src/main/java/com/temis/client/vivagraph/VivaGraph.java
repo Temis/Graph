@@ -10,6 +10,8 @@ import com.temis.client.common.GraphGWT;
 
 public class VivaGraph extends GraphGWT {
 	
+	JavaScriptObject graphInstance;
+	
 	@Override
 	public Widget getImplementationWidget(int height, int width, String name) {
 		SimplePanel widget = new SimplePanel();
@@ -27,11 +29,41 @@ public class VivaGraph extends GraphGWT {
 																									$wnd.redrawGraph(graphData, graphName, arborjs);
 																									}-*/;
 	
+	public native void refreshNode(String nodename, JavaScriptObject currentNodeData) /*-{
+																						
+																						var graph = this.@com.temis.client.vivagraph.VivaGraph::graphInstance;
+																						graph.addNode(nodename, currentNodeData);
+																						}-*/;
+	
 	@Override
 	public boolean removeNode(String name) {
-		// TODO Auto-generated method stub
-		return false;
+		removeVivaGraphNode(name);
+		return true;
 	}
+	
+	public native void removeVivaGraphNode(String nodename)/*-{
+															//															var graph = this.@com.temis.client.vivagraph.VivaGraph::graphInstance;
+															//															var nodesLeft = [];
+															//															graph.forEachNode(function(node){
+															//															nodesLeft.push(node.id);
+															//															});
+															//
+															//															var removeInterval = setInterval(function(){
+															//															var nodesCount = nodesLeft.length;
+															//
+															//															if (nodesCount > 0){
+															//															var nodeToRemove = Math.min((Math.random() * nodesCount) << 0, nodesCount - 1);
+															//
+															//															graph.removeNode(nodesLeft[nodeToRemove]);
+															//															nodesLeft.splice(nodeToRemove, 1);
+															//															}
+															//
+															//															}, 100);
+															//															
+															
+															var graph = this.@com.temis.client.vivagraph.VivaGraph::graphInstance;
+															graph.removeNode(nodename);
+															}-*/;
 	
 	/**
 	 * Add a node into the graph.
@@ -110,6 +142,14 @@ public class VivaGraph extends GraphGWT {
 		
 		edges.put(sourceNodeName, edge);
 		getJsonDataGraph().put("edges", edges);
+	}
+	
+	public JavaScriptObject getGraphInstance() {
+		return graphInstance;
+	}
+	
+	public void setGraphInstance(JavaScriptObject graphInstance) {
+		this.graphInstance = graphInstance;
 	}
 	
 }
