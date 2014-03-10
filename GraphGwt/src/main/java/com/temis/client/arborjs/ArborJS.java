@@ -36,6 +36,7 @@ public class ArborJS extends GraphGWT {
 		ScriptInjector.fromString(Resources.INSTANCE.arborTween().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		ScriptInjector.fromString(Resources.INSTANCE.graphics().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		ScriptInjector.fromString(Resources.INSTANCE.edit().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.arbor().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		ScriptInjector.fromString(Resources.INSTANCE.mainarbor().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		redrawGraph(getName(), getJsonDataGraph().getJavaScriptObject(), this);
 	}

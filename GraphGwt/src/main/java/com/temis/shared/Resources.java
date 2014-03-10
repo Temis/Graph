@@ -15,6 +15,9 @@ public interface Resources extends ClientBundle {
 	@Source("jquery.address-1.5.min.js")
 	TextResource jaddress();
 	
+	@Source("arbor.js")
+	TextResource arbor();
+	
 	@Source("arbor-tween.js")
 	TextResource arborTween();
 	
