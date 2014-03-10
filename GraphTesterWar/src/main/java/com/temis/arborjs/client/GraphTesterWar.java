@@ -6,13 +6,13 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.temis.client.arborjs.ArborJS;
 import com.temis.client.common.GraphGWT;
 import com.temis.client.common.NodeClickHandler;
 import com.temis.client.common.NodeMiddleClickHandler;
 import com.temis.client.common.NodeMouseHoverHandler;
 import com.temis.client.common.NodeMouseOutHandler;
 import com.temis.client.common.NodeRightClickHandler;
-import com.temis.client.vivagraph.VivaGraph;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -21,7 +21,7 @@ public class GraphTesterWar implements EntryPoint {
 	
 	@Override
 	public void onModuleLoad() {
-		VivaGraph graph = new VivaGraph();
+		GraphGWT graph = new ArborJS();
 		ExporterUtil.exportAll();
 		RootPanel.get().add(graph);
 		graph.addNode("temis", "red", "rect", "Temis", 1, "http://www.temis.com/fr");
