@@ -53,42 +53,41 @@ function redrawGraph(theUI, graphName, javaGraphInstance) {
 						'rect').attr('width', nodeSize)
 						.attr('height', nodeSize).attr('fill',
 								node.data.color ? node.data.color : '#00a2e8');
-				 $(ui).hover(function() {
-				 var vivaEvent = new vivagraph.GraphEvent();
-				 vivaEvent.mouseHoverNode(this.node.id, thatInstance);
-				 }, function() {
-				 var vivaEvent = new vivagraph.GraphEvent();
-				 vivaEvent.mouseOutNode(this.node.id, thatInstance);
-				 });
+				$(ui).hover(function() {
+					var vivaEvent = new vivagraph.GraphEvent();
+					vivaEvent.mouseHoverNode(this.node.id, thatInstance);
+				}, function() {
+					var vivaEvent = new vivagraph.GraphEvent();
+					vivaEvent.mouseOutNode(this.node.id, thatInstance);
+				});
 
-				// $(ui).mousedown(function(e) {
-				// var nodeName = this.node.id;
-				// var vivaEvent = new vivagraph.GraphEvent();
-				// if (e.button === 2) {
-				// vivaEvent.rightClickedNode(nodeName, thatInstance);
-				// }
-				// else if (e.button === 1) {
-				// vivaEvent.middleClickedNode(nodeName, thatInstance);
-				// } else {
-				// vivaEvent.clickedNode(nodeName, thatInstance);
-				// }
-				// });
+				$(ui).mousedown(function(e) {
+					var nodeName = this.node.id;
+					var vivaEvent = new vivagraph.GraphEvent();
+					if (e.button === 2) {
+						vivaEvent.rightClickedNode(nodeName, thatInstance);
+					} else if (e.button === 1) {
+						vivaEvent.middleClickedNode(nodeName, thatInstance);
+					} else {
+						vivaEvent.clickedNode(nodeName, thatInstance);
+					}
+				});
 
-//				$(ui).mouseup(
-//						function(e) {
-//							var nodeName = this.node.id;
-//							var vivaEvent = new vivagraph.GraphEvent();
-//							if (e.button === 2) {
-//								vivaEvent.rightClickedReleaseNode(nodeName,
-//										thatInstance);
-//							} else if (e.button === 1) {
-//								vivaEvent.middleClickedReleaseNode(nodeName,
-//										thatInstance);
-//							} else {
-//								vivaEvent.clickedReleaseNode(nodeName,
-//										thatInstance);
-//							}
-//						});
+				$(ui).mouseup(
+						function(e) {
+							var nodeName = this.node.id;
+							var vivaEvent = new vivagraph.GraphEvent();
+							if (e.button === 2) {
+								vivaEvent.rightClickedReleaseNode(nodeName,
+										thatInstance);
+							} else if (e.button === 1) {
+								vivaEvent.middleClickedReleaseNode(nodeName,
+										thatInstance);
+							} else {
+								vivaEvent.clickedReleaseNode(nodeName,
+										thatInstance);
+							}
+						});
 
 				ui.append(svgText);
 				ui.append(img);
@@ -127,7 +126,6 @@ function redrawGraph(theUI, graphName, javaGraphInstance) {
 					});
 
 	renderer.run();
-
 
 	document.oncontextmenu = function() {
 		return false;

@@ -21,8 +21,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onClick(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -35,8 +35,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onClickRelease(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -49,8 +49,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onRightClick(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -63,8 +63,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onRightClickRelease(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -77,8 +77,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onMiddleClick(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -91,8 +91,8 @@ public class VivaGraphEvent extends GraphEvent {
 			if (o.getNodeHandler() != null) {
 				o.getNodeHandler().onMiddleClickRelease(nodeName, o, currentNodeData);
 			}
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -102,8 +102,8 @@ public class VivaGraphEvent extends GraphEvent {
 		if (o.getNodeMouseHoverHandler() != null) {
 			JSONObject currentNodeData = getCurrentNodeJsonData(nodeName, o);
 			o.getNodeMouseHoverHandler().onMouseHover(nodeName, o, currentNodeData);
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
@@ -113,8 +113,8 @@ public class VivaGraphEvent extends GraphEvent {
 		if (o.getNodeMouseOutHandler() != null) {
 			JSONObject currentNodeData = getCurrentNodeJsonData(nodeName, o);
 			o.getNodeMouseOutHandler().onMouseOut(nodeName, o, currentNodeData);
-			VivaGraph vivagraph = (VivaGraph) o;
-			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
+			//			VivaGraph vivagraph = (VivaGraph) o;
+			//			vivagraph.refreshNode(nodeName, currentNodeData.getJavaScriptObject());
 		}
 	}
 	
