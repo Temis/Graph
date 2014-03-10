@@ -2,11 +2,13 @@ package com.temis.client.arborjs;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.ui.Widget;
 import com.temis.client.common.GraphGWT;
+import com.temis.shared.Resources;
 
 public class ArborJS extends GraphGWT {
 	
@@ -29,11 +31,17 @@ public class ArborJS extends GraphGWT {
 	 */
 	@Override
 	public void draw() {
+		ScriptInjector.fromString(Resources.INSTANCE.jquery().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.jaddress().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.arborTween().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.graphics().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.edit().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.mainarbor().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		redrawGraph(getName(), getJsonDataGraph().getJavaScriptObject(), this);
 	}
 	
 	private native void redrawGraph(String graphName, JavaScriptObject graphData, GraphGWT arborjs) /*-{
-																									$wnd.redrawGraph(graphData, graphName, arborjs);
+																									$wnd.redrawArborjsGraph(graphData, graphName, arborjs);
 																									}-*/;
 	
 	/* (non-Javadoc)

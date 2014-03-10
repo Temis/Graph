@@ -1,12 +1,14 @@
 package com.temis.client.vivagraph;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.temis.client.common.GraphGWT;
+import com.temis.shared.Resources;
 
 public class VivaGraph extends GraphGWT {
 	
@@ -22,12 +24,16 @@ public class VivaGraph extends GraphGWT {
 	
 	@Override
 	public void draw() {
+		ScriptInjector.fromString(Resources.INSTANCE.jquery().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		Resources.INSTANCE.vivagraphCss().ensureInjected();
+		ScriptInjector.fromString(Resources.INSTANCE.vivagraph().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(Resources.INSTANCE.mainvivagraph().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 		redrawGraph(getName(), getJsonDataGraph().getJavaScriptObject(), this);
 	}
 	
-	private native void redrawGraph(String graphName, JavaScriptObject graphData, GraphGWT arborjs) /*-{
-																									$wnd.redrawGraph(graphData, graphName, arborjs);
-																									}-*/;
+	private native void redrawGraph(String graphName, JavaScriptObject graphData, GraphGWT thisvivagraphinstance) /*-{
+																													$wnd.redrawVivaGraph(graphData, graphName, thisvivagraphinstance);
+																													}-*/;
 	
 	public native void refreshNode(String nodename, JavaScriptObject currentNodeData) /*-{
 																						

@@ -2,7 +2,7 @@
 // than single image. Do accomplish this we use 'g' element and
 // compose group of elements to represent a node.
 
-function redrawGraph(theUI, graphName, javaGraphInstance) {
+function redrawVivaGraph(theUI, graphName, javaGraphInstance) {
 	var thatInstance = javaGraphInstance;
 	var graph = Viva.Graph.graph();
 

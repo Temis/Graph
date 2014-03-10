@@ -12,25 +12,9 @@
 
 	<inherits name='com.google.gwt.user.theme.clean.Clean' />
 	<inherits name="com.google.gwt.json.JSON" />
-	<public path="public" />
-
-	<!-- ArborJS -->
-	<script src="jquery-1.6.1.min.js" />
-	<script src="jquery.address-1.5.min.js" />
-	<script src="arbor.js" />
-	<script src="arbor-tween.js" />
-	<script src="graphics.js" />
-	<script src="edit.js" />
-	<script src="mainarbor.js" />
-	
-	<!-- Viva graph -->
-	<script src="vivagraph.js" />
-	<script src="mainvivagraph.js" />
-	<stylesheet src='vivagraph.css' />
 	
 	<source path='client' />
 	<source path='shared' />
-
 	<!-- allow Super Dev Mode -->
 	<!-- <add-linker name="xsiframe" /> -->
 </module>

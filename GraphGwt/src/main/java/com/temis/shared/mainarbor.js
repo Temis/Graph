@@ -323,7 +323,7 @@ var Renderer = function(elt, javaGraphInstance) {
 	return that
 }
 
-function redrawGraph(theUI, graphName, javaGraphInstance) {
+function redrawArborjsGraph(theUI, graphName, javaGraphInstance) {
 	var sys = arbor.ParticleSystem()
 	sys.parameters({
 		stiffness : 500,

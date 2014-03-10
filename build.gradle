@@ -19,7 +19,7 @@ subprojects {
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
 	
-	version = '1.0.0'
+	version = '1.0.1'
 	ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 	
 	group = 'com.temis'
