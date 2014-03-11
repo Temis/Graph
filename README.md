@@ -271,7 +271,7 @@ graph.addEdge("europe", "germany", "euro", "#FFA500", true);
 graph.addEdge("europe", "italy", "euro", "#FFA500", true);
 graph.addEdge("europe", "spain", "euro", "#FFA500", true);
 graph.addEdge("europe", "etce", 4.0, "euro", "#0000FF", true);
-graph.addEdge("europe", "uk", "£", "#FFA500", true);
+graph.addEdge("europe", "uk", "ï¿½", "#FFA500", true);
 	
 graph.addEdge("asia", "china");
 graph.addEdge("asia", "japan");
@@ -321,7 +321,7 @@ public void onModuleLoad() {
 ```
 
 ### Release notes
-#### v1.0.0
+#### v1.0.1
  - fix dependencies
  -  Add support for vivagraph (but not modification of the graph once its displayed
 
