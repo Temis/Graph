@@ -271,7 +271,7 @@ graph.addEdge("europe", "germany", "euro", "#FFA500", true);
 graph.addEdge("europe", "italy", "euro", "#FFA500", true);
 graph.addEdge("europe", "spain", "euro", "#FFA500", true);
 graph.addEdge("europe", "etce", 4.0, "euro", "#0000FF", true);
-graph.addEdge("europe", "uk", "�", "#FFA500", true);
+graph.addEdge("europe", "uk", "£", "#FFA500", true);
 	
 graph.addEdge("asia", "china");
 graph.addEdge("asia", "japan");
@@ -293,6 +293,49 @@ With ArborJs :
 With VivaGraph
 
 <img src=http://i.imgur.com/dLJEyfd.png>
+
+
+#### Handle an event a change node color
+```java
+//Handle when the mouse goes over a node:
+graph.addNodeMouseHoverHandler(new NodeMouseHoverHandler() {
+			
+   @Override
+   public void onMouseHover(String nodeName, GraphGWT o, JSONObject currentNodeData) {
+      //changing node color:
+      currentNodeData.put("color", new JSONString("yellow"));
+   }
+			
+});
+//handle a click on a node
+graph.addNodeClickHandler(new NodeClickHandler() {
+//when click is pressed
+   @Override
+   public void onClick(String nodeName, GraphGWT o, JSONObject currentNodeData) {
+      currentNodeData.put("color", new JSONString("red"));
+   }
+//when click is released
+   @Override
+   public void onClickRelease(String nodeName, GraphGWT o, JSONObject currentNodeData) {
+      currentNodeData.put("color", new JSONString("blue"));				
+   }			
+});
+```
+Event are currently handled only on a node. Hre is the different event we can handle :
+- NodeMouseHoverHandler (when the mouse enter over a node area
+  * onMouseHover
+- NodeMouseOutHandler (when the mouse leave a node area)
+  * onMouseOut
+- NodeClickHandler
+  * onClick
+  * onClickRelease
+- NodeRightClickHandler
+  * onRightClick
+  * onRightClickRelease
+- NodeMiddleClickHandler
+  * onMiddleClickRelease
+  * onMiddleClickRelease
+
 
 
 #### Using graphGWT in a GWT project
